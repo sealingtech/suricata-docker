@@ -4,7 +4,7 @@ if [[ $# -eq 0 ]] ; then
     echo 'Usage: start-bro-docker <interface>'
     exit 1
 fi
-CONTAINERID=$(docker run -it -d multi-tenant-ids)
+CONTAINERID=$(docker run -it -d suricata-docker)
 pid=$(docker inspect --format='{{ .State.Pid }}' $CONTAINERID)
 ln -s /proc/$pid/ns/net /var/run/netns/$CONTAINERID
 ip link set $1 netns $CONTAINERID
